@@ -1,0 +1,38 @@
+{{> wellcome }}
+
+<div class="row">
+    {{#each notas}}
+    <div class="col-4 mt-4">
+        <div class="card">
+            <h5 class="card-header d-flex justify-content-between align-items-center">
+                {{ title }} <a class="btn btn-info btn-sm" href="/notes/edit/{{ _id }}"><i class="fas fa-edit"></i></a>
+            </h5>
+            <div class="card-body">
+                {{ description }}
+            </div>
+            <div class="card-footer text-muted d-flex justify-content-between align-items-center">
+                <small><i class="fas fa-clock"></i> {{ formatDate date }}</small>
+                <form action="/notes/delete/{{ _id }}?_method=DELETE" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="col-6 mt-4 mx-auto text-center">
+        <div class="card text-center">
+            <h3 class="card-header">
+                No tienes notas... <i class="fas fa-sad-cry"></i>
+                </h5>
+                <div class="card-body">
+                    <a href="/notes/add" class="btn btn-info btn-lg">
+                        <i class="fas fa-plus"></i> Agregar una!
+                    </a>
+                </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
